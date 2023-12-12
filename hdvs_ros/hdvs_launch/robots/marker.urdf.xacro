@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="marker">
+  <xacro:include filename="$(find hdvs_launch)/robots/marker.gazebo.xacro"/>
+  <xacro:macro name="marker" params="connected_to:='' ns:='' rpy:='0 0 0' xyz:='0 0 0' ">
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="${ns}_marker_joint" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="${ns}_marker"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:unless>
+    <link name="${ns}_marker">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.000001" />
+        <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001" />
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box size="0.08000 0.13100 0.09700" />
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh filename="package://hdvs_launch/meshes/marker.dae" />
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+</robot>

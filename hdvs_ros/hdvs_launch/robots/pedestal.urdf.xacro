@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pedestal">
+  <xacro:include filename="$(find hdvs_launch)/robots/pedestal.gazebo.xacro"/>
+  <xacro:macro name="pedestal" params="connected_to:='' ns:='' rpy:='0 0 0' xyz:='0 0 0' ">
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="${ns}_pedestal_joint" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="${ns}_pedestal"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:unless>
+    <link name="${ns}_pedestal">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.02" />
+        <inertia ixx="0.000001" ixy="0.0" ixz="0.0" iyy="0.000001" iyz="0.0" izz="0.000001" />
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh filename="package://hdvs_launch/meshes/pedestal.stl" />
+        </geometry>
+      </collision>
+      <material name="">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+        <texture filename="package://hdvs_launch/materials/textures/kinect.png"/>
+      </material>
+      <visual name="visual">
+        <geometry>
+          <mesh filename="package://hdvs_launch/meshes/pedestal.stl" />
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+</robot>

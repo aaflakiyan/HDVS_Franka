@@ -1,0 +1,44 @@
+    # Publish joint states
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 100
+
+    panda_arm_controller:
+        type: velocity_controllers/JointGroupVelocityController
+
+        joints:
+            - panda_joint1
+            - panda_joint2
+            - panda_joint3
+            - panda_joint4
+            - panda_joint5
+            - panda_joint6
+            - panda_joint7
+
+    joint_position_controller:
+        type: panda_simulation/JointPositionController
+        arm_id: panda
+        joint_names:
+            - panda_joint1
+            - panda_joint2
+            - panda_joint3
+            - panda_joint4
+            - panda_joint5
+            - panda_joint6
+            - panda_joint7
+        gains: [
+            1, 1, 1, 1, 1, 1, 1
+        ]
+  #  /robot_2/gazebo_ros_control/pid_gains/panda_joint1: { p: 12000, d: 50, i: 0.0}
+  #  /robot_2/gazebo_ros_control:
+       # pid_gains:
+        #   panda_joint1: { p: 12000, d: 50, i: 0.0}
+        #   panda_joint2: { p: 30000, d: 100, i: 0.02}
+        #   panda_joint3: { p: 18000, d: 50, i: 0.01}
+         #  panda_joint4: { p: 18000, d: 70, i: 0.01}
+        #   panda_joint5: { p: 12000, d: 70, i: 0.01}
+        #   panda_joint6: { p: 7000, d: 50, i: 0.01}
+        #   panda_joint7: { p: 2000, d: 20, i: 0.0}  
+
+
+

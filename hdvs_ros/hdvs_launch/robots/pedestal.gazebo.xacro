@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pedestal">
+  <xacro:macro name="pedestal_gazebo" params="ns:=''">
+  	<gazebo reference="${ns}_pedestal">
+    </gazebo>
+  </xacro:macro>
+</robot>

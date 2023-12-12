@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
+  <xacro:include filename="$(find hdvs_launch)/robots/panda_arm.xacro"/>
+  <xacro:include filename="$(find hdvs_launch)/robots/pedestal.urdf.xacro"/>
+  <xacro:include filename="$(find hdvs_launch)/robots/marker.urdf.xacro"/>
+
+
+  <!-- for simulation -->
+  <xacro:include filename="$(find franka_description)/robots/panda.gazebo.xacro"/>
+  <xacro:include filename="$(find hdvs_launch)/robots/panda.transmission.xacro"/>
+  <!-- end for simulation -->
+
+  <xacro:panda_arm xyz="2 0 0.95" rpy="0 0 3.14159" />
+  <xacro:pedestal ns="panda" xyz="-0.12 0 -0.95" rpy="0 0 ${pi}" connected_to="panda_link0"/> 
+  <xacro:marker ns="panda" xyz="0 0 0.1" rpy="0 0 ${-pi/2}" connected_to="panda_link8"/> 
+
+
+
+  <!-- for simulation -->
+  <xacro:arg name="robot_name" default="panda"/>
+  <xacro:panda_gazebo robot_name="$(arg robot_name)" />
+  <xacro:panda_transmission robot_name="$(arg robot_name)" load_hand="false" />
+  <xacro:pedestal_gazebo ns="panda" />
+  <xacro:marker_gazebo ns="panda" />
+  <!-- end for simulation -->
+</robot>
