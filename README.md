@@ -30,3 +30,4 @@ roslaunch hdvs_launch simulation.launch
 
 Inside the src folder of hdvs_code, you'll find codes dedicated to various types of visual servoing. Notably, the Pure_vs code is designed for universal use across different robot types. This code calculates the generated velocity from each visual servoing method and publishes the resulting data on the assigned ROS topic. 
 
+The C++ folder contains the code intended for execution on the real robot, utilizing the libfranka and VISP libraries.
